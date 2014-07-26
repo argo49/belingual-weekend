@@ -8,8 +8,11 @@
 
 .container {
   margin: 0 auto;
+}
+
+.constraint {
   max-width: 64rem;
-  width: 90%;
+  margin: auto;
 }
 
 .clearfix:before,
@@ -24,6 +27,13 @@
 
 .clearfix {
   *zoom: 1;
+}
+
+@media (max-width: $bp-medium) {
+  .column {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 @media (min-width: $bp-medium) {

@@ -1,0 +1,37 @@
+.row.foot {
+	background-color: $c-belingual;
+	padding: 0;
+
+	.logo, p { 
+		float: right;
+		max-height: 50px;
+	}
+
+	.footer-links {
+		float: left;
+
+		li {
+			list-style-type: none;
+			display: inline;
+			padding: 0 10px;
+			border-right: 1px solid white;
+			text-transform: uppercase;
+
+			&:last-child {
+				border: none;
+			}
+
+			a {
+				color: #fff;
+				text-decoration: none;
+				
+				&:visited {
+					color: #fff
+				}
+
+			}
+
+		}
+	}
+}
+

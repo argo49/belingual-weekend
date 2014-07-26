@@ -1,0 +1,115 @@
+.home {
+	h1, h2 {
+		margin-bottom: 0;
+		color: $c-belingual;
+	}
+
+	h2 {
+		text-align: center;
+	}
+
+	p, h2 {
+		color: #fff;
+	}
+
+	.row {
+		padding: 30px 0;
+	}
+
+	img {
+		margin: auto;
+	}
+
+	.hook form {
+		width: 85%;
+
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+		}
+
+		button {
+			width: 100%;
+			background-color: $c-belingual;
+			border: none;
+			color: #fff;
+			padding:10px;
+		}
+
+		&#registrationForm {
+			padding-top: 35px;
+			input {
+				border: 1px solid $c-belingual;
+			}
+		}
+	}
+
+	.notmember {
+		width: 85%;
+		text-align: center;
+
+		a {
+			padding-left: 5px;
+		}
+	}
+
+	img.bg {
+		/* Set rules to fill background */
+		min-height: 100%;
+		min-width: 1024px;
+
+		/* Set up proportionate scaling */
+		width: 100%;
+		height: auto;
+
+		/* Set up positioning */
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		z-index: -1;
+	}
+
+	.hook {
+		padding-bottom: 0;
+
+		h1 {
+			color : #fff;
+			margin-top: 5px;
+		}
+
+
+
+		ul.countries {
+			label {
+				color: #fff;	
+			}
+
+			img {
+				margin-bottom: 5px;
+			}
+
+			li {
+				float: left;
+				display: inline;
+				list-style-type: none;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
+
+	.learn, .app {
+		background-color: rgba(0,0,0,0.5);
+	}
+}
+
+@media screen and (max-width: $bp-medium) {
+
+	.home {
+		.hook form {
+			margin: auto;
+		}
+	}
+}

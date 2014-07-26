@@ -1,4 +1,54 @@
-body {
-	background-image: url('../images/new_york.png');
+.row.head {
+	background-color: $c-belingual;
+	padding: 0;
+
+	.logo { 
+		float: left;
+	}
+
+	.header-links {
+		float: right;
+		margin-top: 50px;
+		white-space: nowrap;
+
+		li {
+			list-style-type: none;
+			display: inline;
+			padding: 0 10px;
+			border-right: 2px solid white;
+			font-size: 21px;
+			text-transform: uppercase;
+
+			&:last-child {
+				border: none;
+			}
+
+			a {
+				color: #fff;
+				text-decoration: none;
+				
+				&:visited {
+					color: #fff
+				}
+
+			}
+
+		}
+	}
 }
 
+@media screen and (max-width: $bp-medium) {
+
+	.row.head ul.header-links {
+		margin-top: 0;
+	}
+
+}
+
+@media screen and (max-width: 490px) {
+
+	.row.head ul.header-links {
+		padding: 0;
+	}
+
+}

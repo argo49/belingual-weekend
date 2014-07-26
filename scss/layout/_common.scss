@@ -1,14 +1,20 @@
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+p, div {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
 }
 
-h1 {
-    padding-bottom: $gap;
-    border-bottom: 1px solid $c-border;
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
 }
 
 a {
-    color: $c-highlight;
+    color: $c-belingual;
+
+    &:visited {
+    	color: lighten($c-belingual, 10%);
+    }
 }
 
 img {

@@ -4,9 +4,11 @@
   box-sizing: border-box; }
 
 .container {
-  margin: 0 auto;
+  margin: 0 auto; }
+
+.constraint {
   max-width: 64rem;
-  width: 90%; }
+  margin: auto; }
 
 .clearfix:before,
 .clearfix:after {
@@ -19,6 +21,10 @@
 .clearfix {
   *zoom: 1; }
 
+@media (max-width: 770px) {
+  .column {
+    padding-left: 1rem;
+    padding-right: 1rem; } }
 @media (min-width: 770px) {
   .column {
     float: left;
@@ -46,15 +52,19 @@
   display: block;
   margin: auto; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal; }
+p, div {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400; }
 
-h1 {
-  padding-bottom: 0.67em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.24); }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif; }
 
 a {
-  color: #5677fc; }
+  color: #2ca6de; }
+  a:visited {
+    color: #58b9e5; }
 
 img {
   display: block; }
@@ -66,5 +76,119 @@ img.logo {
   color: #fff;
   text-align: center; }
 
-body {
-  background-image: url("../images/new_york.png"); }
+.home h1, .home h2 {
+  margin-bottom: 0;
+  color: #2ca6de; }
+.home h2 {
+  text-align: center; }
+.home p, .home h2 {
+  color: #fff; }
+.home .row {
+  padding: 30px 0; }
+.home img {
+  margin: auto; }
+.home .hook form {
+  width: 85%; }
+  .home .hook form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; }
+  .home .hook form button {
+    width: 100%;
+    background-color: #2ca6de;
+    border: none;
+    color: #fff;
+    padding: 10px; }
+  .home .hook form#registrationForm {
+    padding-top: 35px; }
+    .home .hook form#registrationForm input {
+      border: 1px solid #2ca6de; }
+.home .notmember {
+  width: 85%;
+  text-align: center; }
+  .home .notmember a {
+    padding-left: 5px; }
+.home img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; }
+.home .hook {
+  padding-bottom: 0; }
+  .home .hook h1 {
+    color: #fff;
+    margin-top: 5px; }
+  .home .hook ul.countries label {
+    color: #fff; }
+  .home .hook ul.countries img {
+    margin-bottom: 5px; }
+  .home .hook ul.countries li {
+    float: left;
+    display: inline;
+    list-style-type: none;
+    padding-left: 15px;
+    padding-right: 15px; }
+.home .learn, .home .app {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+@media screen and (max-width: 770px) {
+  .home .hook form {
+    margin: auto; } }
+.row.head {
+  background-color: #2ca6de;
+  padding: 0; }
+  .row.head .logo {
+    float: left; }
+  .row.head .header-links {
+    float: right;
+    margin-top: 50px;
+    white-space: nowrap; }
+    .row.head .header-links li {
+      list-style-type: none;
+      display: inline;
+      padding: 0 10px;
+      border-right: 2px solid white;
+      font-size: 21px;
+      text-transform: uppercase; }
+      .row.head .header-links li:last-child {
+        border: none; }
+      .row.head .header-links li a {
+        color: #fff;
+        text-decoration: none; }
+        .row.head .header-links li a:visited {
+          color: white; }
+
+@media screen and (max-width: 770px) {
+  .row.head ul.header-links {
+    margin-top: 0; } }
+@media screen and (max-width: 490px) {
+  .row.head ul.header-links {
+    padding: 0; } }
+.row.foot {
+  background-color: #2ca6de;
+  padding: 0; }
+  .row.foot .logo, .row.foot p {
+    float: right;
+    max-height: 50px; }
+  .row.foot .footer-links {
+    float: left; }
+    .row.foot .footer-links li {
+      list-style-type: none;
+      display: inline;
+      padding: 0 10px;
+      border-right: 1px solid white;
+      text-transform: uppercase; }
+      .row.foot .footer-links li:last-child {
+        border: none; }
+      .row.foot .footer-links li a {
+        color: #fff;
+        text-decoration: none; }
+        .row.foot .footer-links li a:visited {
+          color: white; }

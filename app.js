@@ -24,6 +24,8 @@ app.use(passport.session());
 =========================================*/
 
 // Connect to the DB
+
+/*
 mongoose.connect('mongodb://argo:argo@ds055709.mongolab.com:55709/bilingual');
 
 var Schema = mongoose.Schema;
@@ -42,7 +44,7 @@ UserDetails.findOne({
 }, function(err, user) {
 	console.log(err, user);
 });
-
+*/
 
 /*
  * Routing

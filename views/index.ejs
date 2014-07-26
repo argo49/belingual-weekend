@@ -4,24 +4,143 @@
     <title>BeLingual</title>
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div class="container">
-        <div class="row clearfix head">
-            <div class="column full">
-               
-            <img class="logo" src="images/long_logo.png">
-            <h2 class="subtitle">Anywhere, at any time</h2>
+    <div class="container home">
+        <img class="bg" src="images/new_york.png">
+
+        <% include modules/header %>
+
+        <div class="row clearfix hook">
+            <div class="constraint">
+                <div class="column half">   
+                    <h1>Live Global. Anywhere. Anytime.</h1>
+                    <p>BeLingual is a social media and language learning platform that connects participants who want to learn the other's native tongue</p>
+                    <form id="loginForm">
+                        <input id="login" placeholder="username"/>
+                        <input type="password" placeholder="password"/>
+                        <button type="submit">Login</button>
+                    </form>
+                    <p class="notmember">Not a member yet?<a href="">SIGN UP NOW</a></p>
+                </div>
+                <div class="column half">
+                    <img class="people" src="images/people.png">
+                </div>
+
+                <div class="column half getstarted">  
+                    <h1>Let's Get Started</h1>
+                    <p>Select your native language, the one you would like to learn and your interests, so we can match you with the right people and design your learning curve.</p>
+                </div>
+                <div class="column half language">  
+                    <h2>What is your native language?</h2>
+                    
+                    <% include modules/countries %>
+
+                    <h2>What do you want to learn?</h2>
+
+                    <% include modules/countries %>
+
+                    <h2>What are you interested in?</h2>
+
+                    <select multiple>
+                        <option value="food">food</option>
+                        <option value="sports">sports</option>
+                        <option value="politics">politics</option>
+                        <option value="business">business</option>
+                        <option value="entertainment">entertainment</option>
+                        <option value="technology">technology</option>
+                        <option value="fashion">fashion</option>
+                        <option value="science">science</option>
+                        <option value="arts">arts</option>
+                        <option value="travel">travel</option>
+                    </select>
+                </div>
+
 
             </div>
         </div>
+        <div class="row clearfix learn">
+            <div class="constraint">
+                <div class="column half">
+                    <img class="people" src="images/network.png">
+                </div>
+                <div class="column half">
+                    <h1>Learn from the best</h1>
+                    <p>Highly customizable user experience, based on your personal interests and learning style. BeLingual offers the necessary tools to master a language and make essential personal and networking connections globally before ever setting foot in the country of the target language</p>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix connect">
+            <div class="constraint">
+                <div class="column half">   
+                    <h1>Connect with Natives, Anywhere, at Anytime</h1>
+                    <p>By linking up with members based on their interests and level of proficiency in their respective languages, BeLingual allows users to share meaningful content that will help them achieve native level proficiency.</p>
+                </div>
+                <div class="column half">
+                    <img class="people" src="images/globe.png">
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix app">
+            <div class="constraint">
+                <div class="column half">
+                    <img class="people" src="images/phone.png">
+                </div>
+                <div class="column half">   
+                    <h1>Take BeLingual with you</h1>
+                    <p>Keep learning, stay connected. BeLingual’s mobile application, along with its online platform allows subscribers to track their progress, connect with natives, and learn on the go.</p>
+                </div>
+            </div>
+        </div>
+
+        <% include modules/footer %>
     </div>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
     <script type="text/javascript">
 
         // Sample socket.io events
         var socket = io.connect('http://localhost');
+
+        var hook = $('.hook'),
+            form = hook.find('form')
+            content = hook.find('p').add(hook.find('h1'));
+
+
+        form.on('submit', function (e) {
+            e.preventDefault();
+            var button = form.find('button')
+            if (button.text().toLowerCase() == "register") {
+                form.fadeOut();
+            }
+        });
+
+        $('.notmember a').on('click', function (e) {
+            e.preventDefault();            
+            form.add(content).fadeOut(function () {
+                if (form.find('input').length < 4) {
+                    // Add name and email inputs
+                    form.prepend($('<input id="email" type="email" placeholder="email">'));
+                    form.prepend($('<input id="name" placeholder="name"/>'));
+                    // Change background color
+                    hook.velocity({backgroundColor: "#fff"}, {duration:400});
+                    // Change the form id
+                    form.attr('id','registrationForm');
+                    // Change button text
+                    form.find('button').text('Register');
+                    form.fadeIn();
+                }
+                
+            });
+           
+
+
+
+        });
 
 
         socket.on('news', function (data) {
