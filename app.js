@@ -24,19 +24,24 @@ app.use(passport.session());
 =========================================*/
 
 // Connect to the DB
-mongoose.connect('mongodb://localhost/belingualDB');
+mongoose.connect('mongodb://argo:argo@ds055709.mongolab.com:55709/bilingual');
 
 var Schema = mongoose.Schema;
 var UserDetail = new Schema({
       username: String,
-      password: String
+      password: String,
+      language: String,
     }, {
-      collection: 'userInfo'
+      collection: 'Users'
     });
 // This is the database object
-var UserDetails = mongoose.model('userInfo', UserDetail);
+var UserDetails = mongoose.model('Users', UserDetail);
 
-
+UserDetails.findOne({
+  'username': 'hussein',
+}, function(err, user) {
+	console.log(err, user);
+});
 
 
 /*
@@ -49,49 +54,6 @@ app.get('/loginFailure', routes.login);
 app.get('/loginSuccess', routes.home);
 app.get('/css/normalize.css', routes.normalizecss);
 
-
-
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
- 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.use(new LocalStrategy(function(username, password, done) {
-	console.log('?');
-  process.nextTick(function() {
-    UserDetails.findOne({
-      'username': username,
-    }, function(err, user) {
-    	console.log('!');
-      if (err) {
-      	console.log(err);
-        return done(err);
-      }
- 
-      if (!user) {
-        return done(null, false);
-      }
- 
-      if (user.password != password) {
-        return done(null, false);
-      }
- 
-      return done(null, user);
-    });
-  });
-}));
-
-
-app.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/loginSuccess',
-    failureRedirect: '/loginFailure'
-  })
-);
 
 // 404 page should always be last
 app.get('*', routes.fileNotFound); 
