@@ -11,7 +11,7 @@
         <div class="row clearfix head">
             <div class="column full">
                
-            <img class="logo" src="images/logo2.gif">
+            <img class="logo" src="images/long_logo.png">
             <h2 class="subtitle">Anywhere, at any time</h2>
 
             </div>
@@ -25,19 +25,6 @@
 
 
         socket.on('news', function (data) {
-
-            // Get a handle on the example element
-            var exampleContainer = document.getElementById('example');
-
-            // Display all key/value pairs in the example element
-            for (prop in data) {
-                var dataValue = document.createElement('h2');
-                dataValue.textContent += prop + " " + data[prop];
-                exampleContainer.appendChild(dataValue);
-            }
-
-            console.log(data);
-
             // Emit another event back to the server
             socket.emit('my other event', { clientSide: 'data' });
         });

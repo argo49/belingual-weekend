@@ -5,7 +5,7 @@
 
 .container {
   margin: 0 auto;
-  max-width: 48rem;
+  max-width: 64rem;
   width: 90%; }
 
 .clearfix:before,
@@ -66,5 +66,5 @@ img.logo {
   color: #fff;
   text-align: center; }
 
-.head {
-  background-image: url("../images/new_york.jpg"); }
+body {
+  background-image: url("../images/new_york.png"); }
