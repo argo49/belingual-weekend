@@ -10,3 +10,16 @@ h1 {
 a {
     color: $c-highlight;
 }
+
+img {
+	display: block;
+}
+
+img.logo {
+	margin: auto;
+}
+
+.subtitle {
+	color: #fff;
+	text-align: center;
+}

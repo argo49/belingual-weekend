@@ -1,0 +1,579 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "views/index.ejs",
+			"settings":
+			{
+				"buffer_size": 1349,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/modules/_head.scss",
+			"settings":
+			{
+				"buffer_size": 59,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/styles.scss",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var express       = require('express'),\n	app           = module.exports = express(),\n	path          = require('path'),\n	routes        = require('./routes'),\n	server        = module.exports.server = require('http').Server(app),\n	passport      = require('passport'),\n	LocalStrategy = require('passport-local').Strategy,\n	mongoose      = require('mongoose');\n\n/*\n * Configuration\n =========================================*/\napp.set('port', process.env.PORT || 3000);\napp.set('views', path.join(__dirname, 'views'));\napp.set('node_modules', path.join(__dirname, 'node_modules'));\napp.set('view engine', 'ejs');\napp.use(express.static(path.join(__dirname, 'public')));\napp.use(passport.initialize());\napp.use(passport.session());\n\n\n/* \n * Database Things\n=========================================*/\n\n// Connect to the DB\nmongoose.connect('mongodb://localhost/belingualDB');\n\nvar Schema = mongoose.Schema;\nvar UserDetail = new Schema({\n      username: String,\n      password: String\n    }, {\n      collection: 'userInfo'\n    });\n// This is the database object\nvar UserDetails = mongoose.model('userInfo', UserDetail);\n\n\n\n\n/*\n * Routing\n =========================================*/\n\napp.get('/', routes.index);\napp.get('/login', routes.login);\napp.get('/loginFailure', routes.login);\napp.get('/loginSuccess', routes.home);\napp.get('/css/normalize.css', routes.normalizecss);\n\n\n\n\npassport.serializeUser(function(user, done) {\n  done(null, user);\n});\n \npassport.deserializeUser(function(user, done) {\n  done(null, user);\n});\n\npassport.use(new LocalStrategy(function(username, password, done) {\n	console.log('?');\n  process.nextTick(function() {\n    UserDetails.findOne({\n      'username': username,\n    }, function(err, user) {\n    	console.log('!');\n      if (err) {\n      	console.log(err);\n        return done(err);\n      }\n \n      if (!user) {\n        return done(null, false);\n      }\n \n      if (user.password != password) {\n        return done(null, false);\n      }\n \n      return done(null, user);\n    });\n  });\n}));\n\n\napp.post('/login',\n  passport.authenticate('local', {\n    successRedirect: '/loginSuccess',\n    failureRedirect: '/loginFailure'\n  })\n);\n\n// 404 page should always be last\napp.get('*', routes.fileNotFound); \n\n\n\n/*\n * Events\n =========================================*/\n\nvar events = require('./events');\n\n// Start server listening\nserver.listen(app.get('port'), function () {\n  console.log('Server listening on port ' + this.address().port);\n});",
+			"file": "app.js",
+			"file_size": 2597,
+			"file_write_time": 130508645430796882,
+			"settings":
+			{
+				"buffer_size": 2464,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/layout/_structure.scss",
+			"settings":
+			{
+				"buffer_size": 734,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/login.ejs",
+			"settings":
+			{
+				"buffer_size": 547,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/layout/_common.scss",
+			"settings":
+			{
+				"buffer_size": 262,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/index.js",
+			"settings":
+			{
+				"buffer_size": 600,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/home.ejs",
+			"settings":
+			{
+				"buffer_size": 121,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/_var.scss",
+			"settings":
+			{
+				"buffer_size": 981,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/Node.sublime-build",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 174.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/tyler/Dropbox/Code/StartupWeekend/belingual/public/css/styles.css",
+		"/home/tyler/Dropbox/Code/STM/public/javascripts/lines.js",
+		"/home/tyler/Dropbox/Code/STM/routes/index.js",
+		"/home/tyler/Dropbox/Code/STM/data/lang.json",
+		"/home/tyler/Dropbox/Code/STM/app.js",
+		"/home/tyler/Dropbox/Code/STM/views/partials/template/head.ejs",
+		"/home/tyler/Dropbox/Code/STM/bin/www",
+		"/home/tyler/Dropbox/Code/STM/views/index.ejs",
+		"/home/tyler/Dropbox/Code/STM/views/partials/content/form_payment_info.ejs",
+		"/home/tyler/Dropbox/Code/STM/views/partials/content/form_student_info.ejs",
+		"/home/tyler/Dropbox/Code/STM/views/partials/content/confirmation.ejs",
+		"/home/tyler/Dropbox/Code/STM/routes/users.js",
+		"/home/tyler/Dropbox/Code/STM/index.js",
+		"/home/tyler/Dropbox/Code/STM/views/fr/index.html",
+		"/home/tyler/Dropbox/Code/STM/.gitignore",
+		"/home/tyler/Dropbox/Code/STM/package.json",
+		"/home/tyler/Dropbox/Code/STM/js/lines.js",
+		"/home/tyler/Dropbox/Code/STM/scss/modules/_structure.scss",
+		"/home/tyler/Dropbox/Code/STM/scss/modules/_lines.scss",
+		"/home/tyler/Dropbox/Code/STM/scss/modules/_form.scss",
+		"/home/tyler/Dropbox/Code/STM/scss/modules/_common.scss",
+		"/home/tyler/Dropbox/Code/STM/en/index.html",
+		"/home/tyler/Dropbox/Code/STM/node/package.json",
+		"/home/tyler/Dropbox/Code/STM/node/index.js",
+		"/home/tyler/Dropbox/Code/STM/node/index.html",
+		"/home/tyler/Dropbox/Code/mrroboto/package.json",
+		"/home/tyler/Dropbox/Code/mrroboto/index.js",
+		"/home/tyler/.config/sublime-text-3/Packages/User/Node.sublime-build",
+		"/home/tyler/Dropbox/Code/heroku/index.js",
+		"/home/tyler/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/tyler/.config/sublime-text-3/Packages/User/codeivate-st.sublime-settings"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"route",
+			"<option>",
+			"option",
+			"</option>",
+			"<option>",
+			"</option>",
+			"<option>",
+			"                            <",
+			"tems",
+			"</option>",
+			"<option>",
+			"rou",
+			"Submit"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "views/index.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								339,
+								339
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scss/modules/_head.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 59,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								59
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "scss/styles.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 93,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								91,
+								91
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2464,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1116,
+								1116
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "scss/layout/_structure.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								732,
+								732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 264.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/login.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								408,
+								408
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "scss/layout/_common.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 262,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								238,
+								238
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "routes/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 600,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								405,
+								405
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/home.ejs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 121,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								79,
+								79
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "scss/_var.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 981,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								121,
+								121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 572.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 218.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

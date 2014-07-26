@@ -42,6 +42,10 @@
 
   .column.flow-opposite {
     float: right; } }
+.a-center {
+  display: block;
+  margin: auto; }
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
@@ -51,3 +55,16 @@ h1 {
 
 a {
   color: #5677fc; }
+
+img {
+  display: block; }
+
+img.logo {
+  margin: auto; }
+
+.subtitle {
+  color: #fff;
+  text-align: center; }
+
+.head {
+  background-image: url("../images/new_york.jpg"); }
