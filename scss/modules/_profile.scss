@@ -1,0 +1,100 @@
+.profileHeaderImage {
+	background-image: url('../images/new_york_clear.jpg');
+	background-position: 10px;
+
+	h1 {
+		color: #fff;
+	}
+
+	button {
+		float: right;
+		text-transform: uppercase;
+		width: 16.67%;
+
+		&:nth-of-type(odd) {
+			margin-left: 2px;
+		}
+	}
+
+	.tabs {
+		padding: 0;
+
+		a {
+			text-decoration: none;
+			&:visited {
+				text-decoration: none;
+			}
+		}
+
+		.tab {
+			color: $c-belingual;
+			background-color: #fff;
+		}
+
+		.tab.active {
+			a {
+				color: #fff;	
+			}
+			
+			background-color: $c-belingual;
+		}
+	}
+}
+
+.userProfileTitle {
+	background-color: $c-belingual;
+	height: 65px;
+
+	h2 {
+		color: #fff;
+	}
+	img {
+		float: left;
+		width: 100px;
+		border-radius: 50px;
+		margin-top: -13px;
+		margin-bottom: -13px;
+	}
+}
+
+.profile {
+
+
+
+	h3, a { 
+		color: $c-belingual;
+		margin-bottom: 0;
+	}
+
+	p {
+		margin-top: 5px;
+	}
+
+	ul.contact {
+		padding: 0;
+		li {
+			display: inline;
+			list-style-type: none;
+		}
+	}
+
+	ul.language {
+		padding: 0;
+		li {
+			list-style-type: none;
+		}
+	}
+
+	& + .foot {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+
+	@media screen and (max-width: $bp-medium) {
+		.column:first-child {
+			margin-bottom: 30px;
+		}
+	}
+
+}

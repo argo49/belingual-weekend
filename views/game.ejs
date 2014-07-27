@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game | BeLingual</title>
+	<% include modules/head %>
+</head>
+<body>
+
+	<div class="container">
+
+        <% include modules/header %>
+
+        <div class="profileHeaderImage">
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                	<h1 class="title">Connect and learn with your peers.</h1>
+                </div>
+            </div>
+            <div class="constraint">
+                <div class="column full tabs">
+                    <button class="tab"><a href="/profile">Connect</a></button>
+                    <button class="tab active"><a href="/learn">Learn</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row clearfix userProfileTitle">
+            <div class="constraint">
+                <div class="column full">
+                    <img src="images/ben.png">
+                    <h2>Ben Julie</h2>
+                    <div class="subnav">
+                        <a class="subnav-link active" href="/game">Quiz</a>
+                        <a class="subnav-link" href="/learn">Lesson</a>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                    <h1>Quiz Game</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix lesson question">
+            <div class="constraint">
+                <div class="column half">
+                    <img src="images/SoftDrinks.jpg">
+                </div>
+                <div class="column half">
+                    <div class="activity">
+                        
+                            <p>1. What is this?</p>
+                        
+                            <div class="q incorrect">Nachos</div>
+                            <div class="q incorrect">Beer</div>
+                            <div class="q correct">Soft Drinks</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix lesson question inactive">
+            <div class="constraint">
+                <div class="column half">
+                    <img src="images/order.jpg">
+                </div>
+                <div class="column half">
+                    <div class="activity">
+                        
+                            <p>2. What is Rebecca's job?</p>
+                        
+                            <div class="q correct">Waitress</div>
+                            <div class="q incorrect">Cook</div>
+                            <div class="q incorrect">Teacher</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                    <h1 class="score"></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="learn">
+            <% include modules/footer %>    
+        </div>
+        
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var score = 0;
+        var totalScore = $('.question').length;
+
+        $('.q.correct').on('click', function () {
+            score++;
+            var q = $(this);
+            q.css('border','3px solid green');
+
+            window.setTimeout(function () {
+                q.closest('.question').fadeOut(function () {
+                    $(this).remove()
+
+                    if ($('.question').length > 0) {
+                        $('.question').first().removeClass('inactive').fadeIn();
+                    }else{
+                        displayScore();
+                    }
+
+                });
+            }, 1000);
+
+        });
+
+        $('.q.incorrect').on('click', function () {
+            var q = $(this);
+            q.css('border','3px solid red');
+
+            window.setTimeout(function () {
+                q.closest('.question').fadeOut(function () {
+                    $(this).remove()
+
+                    if ($('.question').length > 0) {
+                        $('.question').first().removeClass('inactive').fadeIn();
+                    }else{
+                        displayScore();
+                    }
+
+                });
+            }, 1000);
+        });
+
+        function displayScore () {
+            var domScore = $('.score');
+            domScore.text(score + " / " + totalScore + " correct answers!");
+            domScore.fadeIn();
+        }
+    });
+    </script>
+</body>
+</html>

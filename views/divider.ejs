@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home | BeLingual</title>
+	<% include modules/head %>
+
+    <style type="text/css">
+    button a {
+        text-decoration: none;
+    }
+
+    .journey a {
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+
+	<div class="container divider">
+        <img class="bg" src="images/new_york.png">
+
+        <% include modules/header %>
+
+        <div class="row clearfix divider">
+            <div class="constraint">
+                <div class="column half connect">
+                	<h1>Get connected and learn with your peers.</h1>
+                	<img src="images/network_globe.png">
+                	<button><a href="/profile">Connect</a></button>
+                </div>
+                <div class="column half journey">
+                	<h1>Start your language journey</h1>
+                	<img src="images/glyph.png">
+                	<button><a href="/learn">Learn</a></button>
+                </div>
+            </div>
+        </div>
+
+        <% include modules/footer %>
+    </div>
+
+</body>
+</html>

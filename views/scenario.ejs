@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 6 | BeLingual</title>
+	<% include modules/head %>
+</head>
+<body>
+
+	<div class="container">
+
+        <% include modules/header %>
+
+        <div class="profileHeaderImage">
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                	<h1 class="title">Connect and learn with your peers.</h1>
+                </div>
+            </div>
+            <div class="constraint">
+                <div class="column full tabs">
+                    <button class="tab"><a href="/profile">Connect</a></button>
+                    <button class="tab active"><a href="/learn">Learn</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row clearfix userProfileTitle">
+            <div class="constraint">
+                <div class="column full">
+                    <img src="images/ben.png">
+                    <h2>Ben Julie</h2>
+                    <div class="subnav">
+                        <a class="subnav-link" href="/game">Quiz</a>
+                        <a class="subnav-link active" href="/learn">Lesson</a>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <% include modules/bread %>
+
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                    <h1>Lesson 6 - Scenario</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix lesson">
+            <div class="constraint">
+                <div class="column half">
+                    <img src="images/order.jpg">
+                </div>
+                <div class="column half">
+                    <div class="activity">
+                    <div class="q1">
+                        <p>
+                            The waitress Rebecca appears with notepad and pen ready to take your drink order.
+                        </p>
+                        <p>
+                            “Hello! My name is Rebecca! I am your waitress for this evening! What do you want to drink?”
+                        </p>
+                        <div class="choose">Choose all the answers that apply.</div>
+                        <div class="q beer">May I have a beer?</div>
+                        <div class="q nachos">I'd like the nachos.</div>
+                        <div class="q coke">I'll have a coke. 
+                            <br/><br/><em>? - In English speaking countries, coke is used to describe coca cola.</em>
+                            <br/><em>? - “I’ll” implies your desire to order a specific item.</em>
+                        </div>
+
+                        <br/>
+                        
+                    </div>
+                    <div class="q2">
+                         <p>
+                            “I’ll be back shortly to take your food orders. Do you want to hear the specials before I go?”
+                        </p>
+                        <div class="choose">Choose all the answers that apply.</div>
+
+                        <div class="q special">I think you are special.</div>
+                        <div class="q wedo">Yes, we do. Thank you.</div>
+                        <div class="q sure">Sure, what are they?</div>
+                        <br/>
+                        
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="learn">
+            <% include modules/footer %>    
+        </div>
+        
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('.nachos').on('click', function () {
+            $('.q').css('border','none');
+            $(this).css('border','5px solid red');
+        })
+        $('.beer').on('click', function () {
+            $('.q').css('border','none');
+            $(this).css('border','5px solid green');
+        })
+        $('.coke').on('click', function () {
+            $('.q').css('border','none');
+            $(this).css('border','5px solid green');
+        })
+    });
+    </script>
+</body>
+</html>

@@ -53,7 +53,12 @@ UserDetails.findOne({
 app.get('/', routes.index);
 app.get('/login', routes.login);
 app.get('/loginFailure', routes.login);
-app.get('/loginSuccess', routes.home);
+app.get('/loginSuccess', routes.divider);
+app.get('/home', routes.divider);
+app.get('/profile', routes.profile);
+app.get('/learn', routes.learn);
+app.get('/scenario', routes.scenario);
+app.get('/game', routes.game);
 app.get('/css/normalize.css', routes.normalizecss);
 
 

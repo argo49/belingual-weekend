@@ -1,0 +1,99 @@
+.contacts {
+	height: 500px;
+	max-height: 500px;
+	overflow: auto;
+}
+
+.chat-texts {
+	overflow: auto;
+	height: 450px;
+	max-height: 450px;
+}
+
+.chat {
+	background-color: #c3ced3;
+	padding: 0;
+	padding-top: 1px;
+	position: relative;
+
+	input {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		padding:  10px;
+	}
+
+	ul {
+		padding: 0 10px;
+		li {
+			list-style-type: none;
+			min-height: 30px;
+			background-color: #fff;
+			margin: 10px;
+			width: 80%;
+			padding: 10px;
+		}
+
+		li.user {
+			width: 80%;
+			margin-left: 20%;
+		}
+	}
+
+	div.user {
+		padding: 10px;
+		color: #fff;
+		font-size: 16px;	
+		border-bottom : 1px solid white;
+		p {
+			margin-bottom: 5px;;
+			padding-left: 40px;
+		}
+		img{
+			float:left;
+		}
+	}
+}
+
+.contacts {
+	background-color: #1a5f80;
+	padding: 0;
+
+	ul {
+		margin: 0;
+
+		li.first {
+			background-color: $c-belingual-dark;
+			font-weight: 700;
+			font-size: 18px;
+			color: $c-belingual;
+			padding: 10px;
+
+			&:before {
+				content:"\00a0";
+			}
+		}
+
+		li {
+			padding: 5px 15px;
+			color: #fff;
+			opacity: 0.5;
+		}
+
+		li.online {
+			opacity: 1;
+		}
+	}
+	img {
+		float: left;
+	}
+
+	p {
+		padding-top: 5px;
+		padding-left: 40px;
+	}
+}
+
+.chat-texts {
+	color: #000;
+}

@@ -1,0 +1,184 @@
+.learn {
+	.foot {
+		margin-top: 30px;
+		max-height: 50px;
+		position: absolute;
+		width: 100%;
+		//margin: auto;
+		bottom: 0;
+	}
+}
+
+audio {
+	display: none;
+}
+
+#chalk {
+	max-width: 100%;
+	position: relative;
+
+	img {
+		max-width: 100%;	
+	}
+
+	.intro, .step1, .step2, .step3, .step4 {
+		display: none;
+		position: absolute;
+		top: 50px;
+		left: 50px;
+		color: white;
+	}
+
+	.step4 {
+		top: 150px;
+
+		li {
+			margin: 15px 0;
+		}
+	}
+
+	.intro {
+		display: block;
+	}
+
+	.step1, .step2, .step3, .step4 {
+		li {
+			font-size: 32px;
+		}
+	}
+
+	.step3 h1, .step4 li {
+		background-color: $c-belingual;
+		padding: 15px;
+	}
+
+}
+
+.activity {
+	
+
+	.q2 {
+		display: none;
+	}
+
+	.q {
+		padding: 10px;
+		background-color: $c-belingual;
+		color: #fff;
+		margin: 10px;
+
+		&:before {
+			content: 'O';
+			margin-right: 10px;
+		}
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	em {
+		opacity: 0.8;
+	}
+
+	.choose {
+		text-align: center;
+	}
+}
+
+.lesson {
+	img {
+		max-width: 100%;
+
+	}
+	.column.half:nth-of-type(even) {
+		padding: 0;
+	}
+
+}
+
+.bread {
+	ul	{
+		float: right;
+		padding: 0;
+		margin: 0;
+		margin-top: 15px;
+	}
+	li {
+		list-style-type: none;
+		display: inline;
+		a {
+			text-decoration: none;
+		}
+	}
+
+	li.on {
+		
+		a{
+			color: #000;
+			pointer-events: none;
+			cursor: default;
+		}
+	}
+}
+
+.question.inactive {
+	display: none;
+}
+
+.score {
+	text-align: center;
+}
+
+.question {
+	img {
+		border: 1px solid black;
+		padding: 5px;
+	}
+}
+
+.subnav {
+	float: right;
+	margin-top: -50px;
+}
+.subnav-link {
+	font-size: 24px;
+	color: #fff;
+	text-decoration: none;
+	padding-left: 20px;
+
+	&:visited {
+		color: #fff;
+	}
+
+	&.active, &.active:visited {
+		color: #1a5f80;
+	}
+
+
+}
+
+.gotoscenario {
+	background-color: $c-belingual;
+	margin-bottom: 15px; 
+	float:right; 
+	a {
+		
+		color:#fff; 
+		text-decoration: none;
+
+		&:visited {
+			color: #fff;
+		}
+	}
+}
+
+button {
+	a.login {
+		text-decoration: none;
+		color: #fff;
+		&:visited {
+			color:#fff;
+		}
+	}
+}

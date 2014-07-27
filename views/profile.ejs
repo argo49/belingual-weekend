@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home | BeLingual</title>
+	<% include modules/head %>
+</head>
+<body>
+
+	<div class="container">
+
+        <% include modules/header %>
+
+        <div class="profileHeaderImage">
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                	<h1 class="title">Connect and learn with your peers.</h1>
+                </div>
+            </div>
+            <div class="constraint">
+                <div class="column full tabs">
+                    <button class="tab active"><a href="/profile">Connect</a></button>
+                    <button class="tab"><a href="/learn">Learn</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row clearfix userProfileTitle">
+            <div class="constraint">
+                <div class="column full">
+                    <img src="images/ben.png">
+                    <h2>Ben Julie</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix profile">
+            <div class="constraint">
+                <div class="column third">
+                    <h3>About</h3>
+                    <p>Ben is a highly seasoned industry professional, having served as a Cultural Consultant and Director of Business Development for one of the largest localization firms worldwide.</p>
+                    <h3>Interests</h3>
+                    <p>Business, Technology, Travel</p>
+                    <h3>Contact</h3>
+                    <p>
+                        <ul class="contact">
+                            <li>
+                                <a href="">Skype</a>
+                            </li>
+                            <li>
+                                <a href="">AIM</a>
+                            </li>
+                            <li>
+                                <a href="">Email</a>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="column third">
+                    <% include modules/chat %>
+                </div>
+                <div class="column third contacts">
+                    <ul class="top language open">
+                        <li class="first">(4) NATIVE: French </li>
+                        <li class="online">
+                            <img src="images/online_default.png">
+                            <p>Xavier Henry</p>
+                        </li>
+                        <li class="online">
+                            <img src="images/online_default.png">
+                            <p>Ellen Molson</p>
+                        </li>
+                        <li>
+                            <img src="images/online_default.png">
+                            <p>Thomas John</p>
+                        </li>
+                        <li>
+                            <img src="images/online_default.png">
+                            <p>Sam Butler</p>
+                        </li>
+                    </ul>
+                     <ul class="top language closed">
+                        <li class="first">(7) LEARNING: English </li>
+                    </ul>
+                    <ul class="top language open">
+                        <li class="first">(3) INTEREST: Travel </li>
+                        <li class="online">
+                            <img src="images/online_default.png">
+                            <p>Andrew Nielson</p>
+                        </li>
+                        <li class="online">
+                            <img src="images/online_default.png">
+                            <p>Gabriella Lopez</p>
+                        </li>
+                        <li>
+                            <img src="images/online_default.png">
+                            <p>Bob Jones</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <% include modules/footer %>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('.profileHeaderImage').velocity({'background-position':'1000px'}, {loop: 1000, duration: 20000});
+
+        var chatInput = $('.chat input').on('keyup', function (e) {
+            e.preventDefault(); 
+            if (e.which == 13) {
+                $('.chat .chat-texts ul').first().append($('<li/>').addClass('user').text(chatInput.val()));
+                chatInput.val('').focus();
+            }
+        })
+    });
+    </script>
+</body>
+</html>

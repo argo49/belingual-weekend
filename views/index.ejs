@@ -2,11 +2,8 @@
 <html>
 <head>
     <title>BeLingual</title>
-    <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <% include modules/head %>
+    <link href="css/multiple-select.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="container home">
@@ -16,17 +13,17 @@
 
         <div class="row clearfix hook">
             <div class="constraint">
-                <div class="column half">   
+                <div class="column half login">   
                     <h1>Live Global. Anywhere. Anytime.</h1>
                     <p>BeLingual is a social media and language learning platform that connects participants who want to learn the other's native tongue</p>
                     <form id="loginForm">
                         <input id="login" placeholder="username"/>
                         <input type="password" placeholder="password"/>
-                        <button type="submit">Login</button>
+                        <button type="submit"><a class="login" href="/home">Login</a></button>
                     </form>
                     <p class="notmember">Not a member yet?<a href="">SIGN UP NOW</a></p>
                 </div>
-                <div class="column half">
+                <div class="column half people">
                     <img class="people" src="images/people.png">
                 </div>
 
@@ -35,28 +32,32 @@
                     <p>Select your native language, the one you would like to learn and your interests, so we can match you with the right people and design your learning curve.</p>
                 </div>
                 <div class="column half language">  
-                    <h2>What is your native language?</h2>
-                    
-                    <% include modules/countries %>
+                    <div>
+                        <h2>What is your native language?</h2>
+                        <% include modules/countries %>
+                    </div>
+                    <div>
+                        <h2>What do you want to learn?</h2>
+                        <% include modules/countries %>
+                    </div>
 
-                    <h2>What do you want to learn?</h2>
+                    <div>
+                        <h2>What are you interested in?</h2>
+                        <select multiple>
+                            <option value="food">food</option>
+                            <option value="sports">sports</option>
+                            <option value="politics">politics</option>
+                            <option value="business">business</option>
+                            <option value="entertainment">entertainment</option>
+                            <option value="technology">technology</option>
+                            <option value="fashion">fashion</option>
+                            <option value="science">science</option>
+                            <option value="arts">arts</option>
+                            <option value="travel">travel</option>
+                        </select>
 
-                    <% include modules/countries %>
-
-                    <h2>What are you interested in?</h2>
-
-                    <select multiple>
-                        <option value="food">food</option>
-                        <option value="sports">sports</option>
-                        <option value="politics">politics</option>
-                        <option value="business">business</option>
-                        <option value="entertainment">entertainment</option>
-                        <option value="technology">technology</option>
-                        <option value="fashion">fashion</option>
-                        <option value="science">science</option>
-                        <option value="arts">arts</option>
-                        <option value="travel">travel</option>
-                    </select>
+                        <button><a style="color:#fff; text-decoration:none" href="/home">Submit</a></button>
+                    </div>
                 </div>
 
 
@@ -65,7 +66,7 @@
         <div class="row clearfix learn">
             <div class="constraint">
                 <div class="column half">
-                    <img class="people" src="images/network.png">
+                    <img src="images/network.png">
                 </div>
                 <div class="column half">
                     <h1>Learn from the best</h1>
@@ -80,7 +81,7 @@
                     <p>By linking up with members based on their interests and level of proficiency in their respective languages, BeLingual allows users to share meaningful content that will help them achieve native level proficiency.</p>
                 </div>
                 <div class="column half">
-                    <img class="people" src="images/globe.png">
+                    <img src="images/globe.png">
                 </div>
             </div>
         </div>
@@ -99,24 +100,57 @@
         <% include modules/footer %>
     </div>
 
+    <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
+    <script src="js/lib/jquery.multiple.select.js"></script>
     <script type="text/javascript">
 
         // Sample socket.io events
         var socket = io.connect('http://localhost');
 
-        var hook = $('.hook'),
-            form = hook.find('form')
-            content = hook.find('p').add(hook.find('h1'));
+        $(document).ready(function () {
+            $('select').multipleSelect({
+                placeholder: "Click here to select"
+            });
 
+        });
 
+        var hook      = $('.hook'),
+            form      = hook.find('form')
+            content   = hook.find('.login p').add(hook.find('.login h1')),
+            countries = $('.countries img');
+
+        // button clicking
         form.on('submit', function (e) {
             e.preventDefault();
-            var button = form.find('button')
-            if (button.text().toLowerCase() == "register") {
-                form.fadeOut();
+            var button = form.find('button');
+
+            // login button is clicked
+            if (button.text().toLowerCase() == "login") {
+                
             }
+
+            // register button is clicked
+            if (button.text().toLowerCase() == "register") {
+                form.add($('.people')).fadeOut(function () {
+                    $('.getstarted').add($('.language')).fadeIn();
+                    hook.css({backgroundColor: "rgba(0,0,0,0)"}, {duration:400});
+                });
+            }
+
+            // Submit button is clicked
+            if (button.text().toLowerCase() == "submit") {
+                window.location();
+            }
+
+        });
+
+        // Selecting a country
+        countries.on('click', function () {
+            var country = $(this);
+            country.closest('ul').find('img').css('border','none');
+            country.css('border','3px solid #2CA6DE');
         });
 
         $('.notmember a').on('click', function (e) {
@@ -136,10 +170,6 @@
                 }
                 
             });
-           
-
-
-
         });
 
 

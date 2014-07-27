@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lesson 6 | BeLingual</title>
+	<% include modules/head %>
+</head>
+<body>
+
+	<div class="container">
+
+        <% include modules/header %>
+
+        <div class="profileHeaderImage">
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                	<h1 class="title">Connect and learn with your peers.</h1>
+                </div>
+            </div>
+            <div class="constraint">
+                <div class="column full tabs">
+                    <button class="tab"><a href="/profile">Connect</a></button>
+                    <button class="tab active"><a href="/learn">Learn</a></button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row clearfix userProfileTitle">
+            <div class="constraint">
+                <div class="column full">
+                    <img src="images/ben.png">
+                    <h2>Ben Julie</h2>
+                    <div class="subnav">
+                        <a class="subnav-link" href="/game">Quiz</a>
+                        <a class="subnav-link active" href="/learn">Lesson</a>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <% include modules/bread %>
+
+        <div class="row clearfix">
+            <div class="constraint">
+                <div class="column full">
+                    <h1>Lesson 6</h1>
+                    <audio id="audio1" controls>
+                      <source src="audio/1.mp3" type="audio/mp3">
+                     
+                        Your browser does not support the audio element.
+                    </audio>    
+                    <audio id="audio2" controls>
+                      <source src="audio/2.mp3" type="audio/mp3">
+                     
+                        Your browser does not support the audio element.
+                    </audio> 
+                    <audio id="audio3" controls>
+                      <source src="audio/3.mp3" type="audio/mp3">
+                     
+                        Your browser does not support the audio element.
+                    </audio> 
+                    <div id="chalk">
+                        <img src="images/chalk.jpg">
+                        <h1 class="intro">Click to begin</h1>
+                        <div class="step1">
+                            <h1>Last time we covered</h1>
+                            <ul>
+                                <li>Pronouns</li>
+                                <li>Drescriptive adjectives</li>
+                                <li>Regular forms of the present simple</li>
+                                <li>Counting 1-100</li>
+                                <li>Basic color spectrum</li>
+                            </ul>    
+                        </div>
+                        <div class="step2">
+                            <h1>Ordering in a restaurant</h1>
+                            <ul>
+                                <li>Common greetings</li>
+                                <li>Expressing numbers</li>
+                                <li>Are there vs. There are</li>
+                                <li>Food-related vocab</li>
+                                <li>Colloquial farewells</li>
+                            </ul>    
+                        </div>
+                        <div class="step3">
+                            <h1>Situational Learning: Setting the scene</h1>   
+                        </div>
+                        <div class="step4">
+                            <ol>
+                                <li>Speak with hostess</li>
+                                 <li>Examine menu and speak to waiter</li>
+                                 <li>Order from waiter</li>
+                                 <li>Request bill and leave restaurant</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    <h2>Press space to skip</h2>
+                    <button class="gotoscenario">
+                        <a href="/scenario">Continue to lesson activity</a>    
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+
+      
+            <% include modules/footer %>    
+     
+        
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.velocity/0.9.0/jquery.velocity.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var chalk = $('#chalk');
+
+        var step = 1;
+
+        chalk.on('click', function () {
+            chalk.find('.intro').fadeOut(function () {
+                play1();
+
+                
+
+            });
+        });
+
+        $(document).on('keyup', function (e) {
+            if (e.which == 32) {    
+                step++;
+
+                if (step == 2) {
+                    play2();
+                } else if (step == 3) {
+                    play3();
+                } else {
+                    stopAudio();
+                    clearBoard();
+                }
+            }
+        })
+
+
+        function stopAudio () {
+            var audios = document.getElementsByTagName('audio');
+            for (var i = 0; i < audios.length; i++) {
+                audios[i].pause();
+            }
+        }
+
+        var time1, time2, time3;
+
+        function clearBoard () {
+            window.clearTimeout(time1);
+            window.clearTimeout(time2);
+            window.clearTimeout(time3);
+            $('.intro').fadeOut();
+            $('.step1').fadeOut();
+            $('.step2').fadeOut();
+            $('.step3').fadeOut();
+            $('.step4').fadeOut();
+        }
+
+        function play1 () {
+            stopAudio();
+            clearBoard();
+            var audio1 = document.getElementById('audio1');
+                audio1.play();
+
+            time1 = window.setTimeout(function () {
+                $('.step1').fadeIn();
+                time1 = window.setTimeout(function () {
+                    $('.step1').fadeOut(function () {
+                        play2();
+                        
+                        
+                    });
+                }, 20000)
+            }, 100);
+        }
+
+        function play2 () {
+            stopAudio();
+            clearBoard();
+            step = 2;
+            var audio2 = document.getElementById('audio2');
+                audio2.play();
+
+            // STEP 1 DONE STEP 2 NOW
+            time2 = window.setTimeout(function () {
+                $('.step2').fadeIn(function () {
+                    time2 = window.setTimeout(function () {
+                        $('.step2').fadeOut(function (){
+                            play3();
+                        })
+                    }, 29000);
+                });
+            }, 100);
+        }
+
+        function play3 () {
+            stopAudio();
+            clearBoard();
+            step = 3;
+            var audio3 = document.getElementById('audio3');
+                audio3.play();
+
+            $('.step3').fadeIn();
+            chalk.find('img').attr('src', 'images/resto.jpg')
+
+            time3 = window.setTimeout(function () {
+                $('.step3').fadeIn(function () {
+                    time3 = window.setTimeout(function () {
+                        $('.step4').fadeIn(function (){
+                            time3 = window.setTimeout(function () {
+                                $('.step3').fadeOut();
+                                $('.step4').fadeOut();
+                            }, 53000)
+                        })
+                    }, 300);
+                });
+            }, 100);
+        }
+
+
+
+    });
+    </script>
+</body>
+</html>
